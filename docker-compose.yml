@@ -1,0 +1,28 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: client
+      dockerfile: Dockerfile
+    container_name: yolo_frontend
+    command: npm start
+    expose:
+      - 3000
+    volumes:
+      - ./client:/app
+  backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    container_name: yolo_backend
+    command: npm start
+  mongodb:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=123
+    volumes:
+      - mongo-db:/data/db
+
+volumes:
+  mongo-db:
