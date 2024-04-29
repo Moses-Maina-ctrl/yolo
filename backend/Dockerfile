@@ -1,4 +1,8 @@
-FROM node:13.12-alpine
+################################
+###    BUILD STAGE           ###
+################################
+
+FROM node:13.12-alpine as build
 
 WORKDIR /app
 
@@ -7,5 +11,15 @@ COPY package.json .
 RUN npm install 
 
 COPY . ./
+
+################################
+###    FINAL STAGE           ###
+################################
+
+FROM node:13.12-alpine
+
+COPY --from=build  /app  .
+
+EXPOSE 5000
 
 CMD ["npm", "start"]
