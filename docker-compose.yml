@@ -25,17 +25,22 @@ services:
       - ./app/node_modules
     container_name: yolo_backend
     command: npm start
+    networks:
+      - driver: bridge
     depends_on:
       - mongodb
   mongodb:
     image: mongo
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=123
     ports:
       - 27017:27017
     volumes:
       - mongo-db:/data/db
+    networks:
+      - driver: bridge
 
 volumes:
   mongo-db:
+
+networks:
+  yolo-app:
+    driver: bridge
