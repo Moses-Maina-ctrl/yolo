@@ -30,7 +30,7 @@
 
 - Version 1.0.0 of the images are images that were created without a multistage build
 
--Version 1.2.0 of the images were build with a multistage build
+- Version 1.2.0 of the images were build with a multistage build
 
 
 
