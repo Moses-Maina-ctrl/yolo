@@ -1,4 +1,4 @@
-FROM  node:lts-alpine
+FROM  node:13.12-alpine
 
 WORKDIR /app
 
@@ -11,4 +11,4 @@ COPY . ./
 
 EXPOSE 3000
 
-CMD [ "npm", "start", "--watch" ]  
+CMD [ "npm", "start" ]  
