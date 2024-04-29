@@ -1,4 +1,4 @@
-# Dockerhub: (Yolo-React)[https://hub.docker.com/repository/docker/mosesmaina1245838/yolo_react]
+# Dockerhub: [Yolo-React](https://hub.docker.com/repository/docker/mosesmaina1245838/yolo_react)
 
 
 # Requirements
