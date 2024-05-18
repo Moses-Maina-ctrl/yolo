@@ -3,7 +3,7 @@
 ################################
 
 
-FROM  node:13.12-alpine as build
+FROM  node:16-alpine as build
 
 WORKDIR /app
 
@@ -14,14 +14,19 @@ RUN npm install
 
 COPY . ./
 
+RUN npm run build
 ################################
 ###    FINAL STAGE           ###
 ################################
 
-FROM node:13.12-alpine 
+FROM node:16-alpine 
+
+WORKDIR /app
+
+RUN npm install -g serve
 
 COPY --from=build  /app  .
 
 EXPOSE 3000
 
-CMD [ "npm", "start" ]  
+CMD [ "serve", "-s", "build"]  
