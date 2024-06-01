@@ -28,7 +28,7 @@ metadata:
 spec:
   type: NodePort
   selector:
-    app.kubernetes.io/name: frontend
+    app: frontend
   ports:
     - protocol: TCP
       port: 3000

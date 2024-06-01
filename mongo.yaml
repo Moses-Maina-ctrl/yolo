@@ -24,10 +24,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongo-service
+  name: mongodb
 spec:
   selector:
-    app.kubernetes.io/name: mongo
+    app: mongo
   ports:
     - protocol: TCP
       port: 27017

@@ -27,7 +27,7 @@ metadata:
   name: backend-service
 spec:
   selector:
-    app.kubernetes.io/name: frontend
+    app: frontend
   ports:
     - protocol: TCP
       port: 5000
