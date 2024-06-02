@@ -5,7 +5,7 @@ metadata:
   labels:
     app: frontend
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: frontend
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: yolo-frontend
-        image: mosesmaina1245838/yolo_frontend:v1.0.0 
+        image: mosesmaina1245838/yolo_frontend:v1.0.0
         ports:
         - containerPort: 3000
 ---
@@ -26,12 +26,11 @@ kind: Service
 metadata:
   name: frontend-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: frontend
   ports:
     - protocol: TCP
       port: 3000
       targetPort: 3000
-      nodePort: 30000
 
