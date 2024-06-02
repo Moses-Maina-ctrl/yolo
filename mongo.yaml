@@ -5,7 +5,7 @@ metadata:
   labels:
     app: mongo
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: mongo
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: mongo
-        image: mongo 
+        image: gcr.io/yolo-425216/mongo 
         ports:
         - containerPort: 27017
         volumeMounts:
