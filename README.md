@@ -1,59 +1,95 @@
-# Dockerhub: [Yolo-React](https://hub.docker.com/repository/docker/mosesmaina1245838/yolo_react)
+# YOLO Web Application
+
+## Overview
+
+This repository contains a web application with a React frontend, an Express backend, and a MongoDB database. The application is containerized using Docker and deployed on a Google Kubernetes Engine (GKE) cluster.
+
+## Accessing the Site
+
+The application is accessible via the following IP address:
+
+arduino
+
+`http://34.28.238.85:3000/`
 
 
-# Requirements
-Make sure that you have the following installed:
-- [node](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04) 
-- npm 
-- [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/) and start the mongodb service with `sudo service mongod start`
+## Architecture
 
-## Navigate to the Client Folder 
- `cd client`
+### Frontend
 
-## Run the folllowing command to install the dependencies 
- `npm install`
+- **Technology**: React
 
-## Run the folllowing to start the app
- `npm start`
+### Backend
 
-## Open a new terminal and run the same commands in the backend folder
- `cd ../backend`
+- **Technology**: Express.js
 
- `npm install`
+### Database
 
- `npm start`
+- **Technology**: MongoDB
 
- ### Go ahead a nd add a product (note that the price field only takes a numeric input)
-# Objectives
+## Deployment on GKE
 
-## Objective 1: Choice of Base Image
-- For the frontend and backend the base image chosen was **node:13.12-alpine**. This was chosen because the newer versions of node did not support the some of the older dependencies and caused the container to immediately stop when ran.
-- Node version 13.2.0 supported the older dependencies and the containers ran successfully.
-- The **Alpine** version of node was chosen due to its lightweight
+### Step-by-Step Deployment Process
 
-- For the database **mongo:latest** was used and the app was able to connect successfully.
+1. **Build Docker Images**
+    
+    Build the Docker images for the frontend and backend:
+    
+    sh
+    
 
-## Objective 2: Dockerfile Directives
+- `docker build -t gcr.io/yolo-425216/yolofrontend:v1 ./frontend docker build -t gcr.io/yolo-425216/yolobackend:v1 ./backend`
+    
+- **Push Docker Images to Google Container Registry**
+    
+    Push the built images to Google Container Registry:
+    
+    sh
+    
+- `docker push gcr.io/yolo-425216/yolofrontend:v1 docker push gcr.io/yolo-425216/yolobackend:v1`
+    
+- **Create a Kubernetes Cluster on GKE**
+    
+    Use the Google Cloud Console or `gcloud` CLI to create a GKE cluster.
+    
+    sh
+    
+- `gcloud container clusters create yolo-cluster --zone us-central1-a --num-nodes=3`
+    
+- **Deploy the Application on GKE**
+    
+    Apply the Kubernetes manifests to deploy the frontend and backend:
+    
+    sh
+    
+- `kubectl apply -f backend.yaml kubectl apply -f frontend.yaml`
+    
+- **Get the External IP**
+    
+    Retrieve the external IP address assigned to the frontend service:
+    
+    sh
+    
 
-- For the Dockerfile a two stage build was used i.e Build Stage and Final Stage
+1. `kubectl get services`
+    
+    Note the `EXTERNAL-IP` for `frontend-service`.
+    
 
-- The Build stage involved pulling node image and copying the package.json and then running npm install to install the required dependencies.
+### Kubernetes Manifests
+ 
+ ### Frontend Manifest
 
-- The final stage involved running the app using **npm start** to start the app.
+- **Deployment**: Deploys two replicas of the React frontend application.
+- **Service**: Exposes the frontend using a LoadBalancer, which provides an external IP address.
 
-## Objective 3: Docker-compose Networking and volumes
+### Backend Manifest
 
-- A network called yolo-app was declared in the  docker-compose.
-- It uses the default `bridge` network  driver. This allows all the services to communicate.
+- **Deployment**: Deploys two replicas of the Express backend application.
+- **Service**: Exposes the backend using a ClusterIP service, making it accessible only within the cluster.
 
-## Objective 4: Running of the Application
+### MongoDB Manifest
 
-- The app was able to run successfully.
-
-## Objective 5:  Dockerhub
-
-- Images were saved in docker hub and the repository [yolo_react](https://hub.docker.com/repository/docker/mosesmaina1245838/yolo_react)
-
-- Version 1.0.0 of the images are images that were created without a multistage build
-
-- Version 1.2.0 of the images were build with a multistage build
+- **Deployment**: Deploys two replicas of the MongoDB database.
+- **Service**: Exposes MongoDB using a ClusterIP service.
+- **PersistentVolume and PersistentVolumeClaim**: Ensures data persistence by attaching a persistent disk to the MongoDB pods.
