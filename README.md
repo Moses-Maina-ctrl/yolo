@@ -8,10 +8,7 @@ This repository contains a web application with a React frontend, an Express bac
 
 The application is accessible via the following IP address:
 
-arduino
-
 `http://34.28.238.85:3000/`
-
 
 ## Architecture
 
