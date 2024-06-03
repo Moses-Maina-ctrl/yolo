@@ -4,11 +4,6 @@
 
 This repository contains a web application with a React frontend, an Express backend, and a MongoDB database. The application is containerized using Docker and deployed on a Google Kubernetes Engine (GKE) cluster.
 
-## Accessing the Site
-
-The application is accessible via the following IP address:
-
-`http://34.28.238.85:3000/`
 
 ## Architecture
 
