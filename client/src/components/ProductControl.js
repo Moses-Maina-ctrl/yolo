@@ -166,7 +166,7 @@ class ProductControl extends Component {
     })
   };
   handleDeletingProduct = (id) => {
-    axios.delete('34.28.238.85/api/products/' + id)
+    axios.delete(`${backendUrl}/api/products/` + id)
       .then(res => console.log(res.data))
       .catch((error) => {
         console.log(error)

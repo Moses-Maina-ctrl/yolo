@@ -29,7 +29,6 @@ function Product (props) {
         </React.Fragment>
     )
 }
-
 Product.propTypes = {
     name: PropTypes.string,
     price: PropTypes.number,
