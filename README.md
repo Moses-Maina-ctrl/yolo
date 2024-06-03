@@ -50,10 +50,10 @@ arduino
  ```
  docker push gcr.io/projectID/yolofrontend:v1 docker push gcr.io/projectID/yolobackend:v1`
     
+ ```
 - **Create a Kubernetes Cluster on GKE**
     
     Use the Google Cloud Console or `gcloud` CLI to create a GKE cluster.
-    
     
  ```
  gcloud container clusters create yolo-cluster --zone us-central1-a --num-nodes=3
