@@ -37,21 +37,28 @@ arduino
     
     
 
- `docker build -t gcr.io/yolo-425216/yolofrontend:v1 ./frontend docker build -t gcr.io/yolo-425216/yolobackend:v1 ./backend`
+ ```
+ docker build -t gcr.io/projectID/yolofrontend:v1 ./frontend docker build -t gcr.io/projectID/yolobackend:v1 ./backend
+
+ ```
     
 - **Push Docker Images to Google Container Registry**
     
     Push the built images to Google Container Registry:
     
     
- `docker push gcr.io/yolo-425216/yolofrontend:v1 docker push gcr.io/yolo-425216/yolobackend:v1`
+ ```
+ docker push gcr.io/projectID/yolofrontend:v1 docker push gcr.io/projectID/yolobackend:v1`
     
 - **Create a Kubernetes Cluster on GKE**
     
     Use the Google Cloud Console or `gcloud` CLI to create a GKE cluster.
     
     
- `gcloud container clusters create yolo-cluster --zone us-central1-a --num-nodes=3`
+ ```
+ gcloud container clusters create yolo-cluster --zone us-central1-a --num-nodes=3
+ 
+ ```
     
 - **Deploy the Application on GKE**
     
