@@ -48,7 +48,7 @@ arduino
     
     
  ```
- docker push gcr.io/projectID/yolofrontend:v1 docker push gcr.io/projectID/yolobackend:v1`
+ docker push gcr.io/projectID/yolofrontend:v1 docker push gcr.io/projectID/yolobackend:v1
     
  ```
 - **Create a Kubernetes Cluster on GKE**
