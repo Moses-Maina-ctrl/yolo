@@ -35,45 +35,40 @@ arduino
     
     Build the Docker images for the frontend and backend:
     
-    sh
     
 
-- `docker build -t gcr.io/yolo-425216/yolofrontend:v1 ./frontend docker build -t gcr.io/yolo-425216/yolobackend:v1 ./backend`
+ `docker build -t gcr.io/yolo-425216/yolofrontend:v1 ./frontend docker build -t gcr.io/yolo-425216/yolobackend:v1 ./backend`
     
 - **Push Docker Images to Google Container Registry**
     
     Push the built images to Google Container Registry:
     
-    sh
     
-- `docker push gcr.io/yolo-425216/yolofrontend:v1 docker push gcr.io/yolo-425216/yolobackend:v1`
+ `docker push gcr.io/yolo-425216/yolofrontend:v1 docker push gcr.io/yolo-425216/yolobackend:v1`
     
 - **Create a Kubernetes Cluster on GKE**
     
     Use the Google Cloud Console or `gcloud` CLI to create a GKE cluster.
     
-    sh
     
-- `gcloud container clusters create yolo-cluster --zone us-central1-a --num-nodes=3`
+ `gcloud container clusters create yolo-cluster --zone us-central1-a --num-nodes=3`
     
 - **Deploy the Application on GKE**
     
     Apply the Kubernetes manifests to deploy the frontend and backend:
     
-    sh
     
-- `kubectl apply -f backend.yaml kubectl apply -f frontend.yaml`
+ `kubectl apply -f backend.yaml kubectl apply -f frontend.yaml`
     
 - **Get the External IP**
     
     Retrieve the external IP address assigned to the frontend service:
     
-    sh
     
 
 1. `kubectl get services`
     
-    Note the `EXTERNAL-IP` for `frontend-service`.
+    Note the `EXTERNAL-IP` for `frontend-service`. 
     
 
 ### Kubernetes Manifests
