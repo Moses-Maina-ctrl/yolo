@@ -63,7 +63,7 @@ import EditProductForm from './EditProductForm';
 //         id: '6'
 //     }
 // ]
-backendUrl = '34.135.64.213'
+ const backendUrl = 'http://34.135.64.213:5000'
 class ProductControl extends Component {
 
   constructor(props) {
@@ -186,7 +186,7 @@ class ProductControl extends Component {
   }
   handleEditingProduct = (editedProduct) => {
 
-    axios.put('34.28.238.85/api/products/' + this.state.selectedProduct._id, editedProduct)
+    axios.put(`${backendUrl}/api/products/` + this.state.selectedProduct._id, editedProduct)
       .then(res => console.log(res.data))
 
     this.setState({
