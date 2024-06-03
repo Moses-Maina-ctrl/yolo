@@ -62,10 +62,16 @@ arduino
     
 - **Deploy the Application on GKE**
     
-    Apply the Kubernetes manifests to deploy the frontend and backend:
+    Apply the Kubernetes manifests to deploy the frontend, backend and database:
     
     
- `kubectl apply -f backend.yaml kubectl apply -f frontend.yaml`
+ ```
+kubectl apply -f backend.yaml
+kubectl apply -f frontend.yaml
+kubectl apply -f mongo.yaml
+kubectl apply -f mongoPersistentVolume.yaml
+kubectl apply -f mongoPersistentVolumeClaim.yaml
+```
     
 - **Get the External IP**
     
@@ -79,7 +85,8 @@ arduino
     
 
 ### Kubernetes Manifests
- 
+ The manifest are located within the k8s directory. 
+
  ### Frontend Manifest
 
 - **Deployment**: Deploys two replicas of the React frontend application.
@@ -88,7 +95,7 @@ arduino
 ### Backend Manifest
 
 - **Deployment**: Deploys two replicas of the Express backend application.
-- **Service**: Exposes the backend using a ClusterIP service, making it accessible only within the cluster.
+- **Service**: Exposes the backend using a LoadBalancer, making it accessible to request from client side.
 
 ### MongoDB Manifest
 
