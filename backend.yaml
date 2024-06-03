@@ -27,7 +27,7 @@ metadata:
   name: backend-service
 spec:
   selector:
-    app: frontend
+    app: backend
   ports:
     - protocol: TCP
       port: 5000
